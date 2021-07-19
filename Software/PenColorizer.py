@@ -17,26 +17,40 @@ class PenColorizer(Script):
             "version": 2,
             "settings":
             {
-                "PenOffsetX":
+                "PenXOffset":
                 {
-                    "label": "Pen Offset X",
+                    "label": "Pen X Offset",
                     "description": "Offset of your pen in X direction",
                     "type": "float",
-                    "default_value": 37.0
+                    "default_value": 36.1
                 },
-                "PenOffsetY":
+                "PenYOffset":
                 {
-                    "label": "Pen Offset Y",
+                    "label": "Pen Y Offset",
                     "description": "Offset of your pen in Y direction",
                     "type": "float",
-                    "default_value": 45.0
+                    "default_value": 45.8
                 },
-                "PenOffsetZ":
+                "PenZOffset":
                 {
-                    "label": "Pen Offset Z",
+                    "label": "Pen Z Offset",
                     "description": "Offset of your pen in Z direction",
                     "type": "float",
                     "default_value": 3.2
+                },
+                "FirstPenXPosition":
+                {
+                    "label": "First Pen X Position",
+                    "description": "X position for holding the first pen in the pen rack",
+                    "type": "float",
+                    "default_value": 28.0
+                },
+                "FirstPenYPosition":
+                {
+                    "label": "First Pen Z Position",
+                    "description": "Z position for holding the first pen in the pen rack",
+                    "type": "float",
+                    "default_value": 238.0
                 }
             }
         }"""
@@ -169,12 +183,12 @@ class PenColorizer(Script):
         
     def execute(self, data):
     
-        self.penstartx = 35.0
-        self.penstarty = 209.0
+        self.penstartx = self.getSettingValueByKey("FirstPenXPosition")# 28.0
+        self.penstarty = self.getSettingValueByKey("FirstPenYPosition")#238.0
     
-        self.xoffset = 36.1
-        self.yoffset = 45.3
-        self.zoffset = 3.2
+        self.xoffset = self.getSettingValueByKey("PenXOffset")#36.1
+        self.yoffset = self.getSettingValueByKey("PenYOffset")#45.3
+        self.zoffset = self.getSettingValueByKey("PenZOffset")#3.2
         self.lastZ = 0.2
         layerheight = 0.2
         
@@ -213,6 +227,8 @@ class PenColorizer(Script):
             
             zhopOffset = 3.0
             
+            wasG0move = False
+            
             #iterate lines
             for line in lines:
                 if linestoskip > 0:
@@ -240,6 +256,9 @@ class PenColorizer(Script):
                 elif "G0" in line or "G1" in line:
                     coord = re.findall(r'[XYZEF].?\d+(?:.\d+)?', line)
                 
+                    #should we draw?
+                    draw = curT >= 0 and isSkirt == False and isPrimeTower == False and (layer_number + curT) % 2 == 0
+                
                     #retract move?
                     E = next((i for i in coord if i.startswith('E')), None)
                     if E != None:
@@ -249,8 +268,25 @@ class PenColorizer(Script):
                         else:
                             isRetractMove = False
                             zhopOffset = 0.0
+                            
+                    '''#G0 Move?
+                    if "G0" in line:
+                        zhopOffset = 3.0
+                        
+                        if wasG0move == False and draw == True: #we transition to G0 Move
+                            drawlines[curT].append(self.offset(line, 0.0))
+                    
+                        wasG0move = True
+                    else:
+                        zhopOffset = 0.0 
+                        
+                        if wasG0move == True and draw == True: #we transition from G0 Move
+                            drawlines[curT].append(self.offset(line, 3.0))
+                        
+                        wasG0move = False'''
+                    
                 
-                    if  curT >= 0 and isSkirt == False and isPrimeTower == False and (layer_number + curT) % 2 == 0:
+                    if  draw == True:
                         drawlines[curT].append(self.offset(line, zhopOffset))
                        
                     if isPrimeTower:

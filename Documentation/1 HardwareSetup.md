@@ -23,3 +23,30 @@ To reduce stress on the bowden cable it is adviced to place the rack as far left
 
 **Important:** when mounting the racket you need make sure that a pen sitting in the pen holder can be easily slided in and out of the individual rack holders! If it doesn´t fit perfectly just slightly unscrew the rack and reposition it until it fits.
 [Image]
+
+## Calibrating the pen holder
+In this step we need to figure out the relative position of the pen when it´s in the holder to the nozzle. To do so tape or otherwise fix a screw or something similar to your print bed.
+
+![](Images/Screw.jpg)
+*screw taped to print bed*
+
+Now **turn OFF** your printer and manually place the nozzle just over the screw.
+
+![](Images/HeadOnScrew.jpg)
+*nozzle placed directly over the srew*
+
+Now **turn ON** your printer. **Do not home the axis**. Place a pen inside the holder and use your printers settings to move the pen directly over the screw. For an Ender 3 the move axis settings are under *prepare->move axis*. Use the 0.1 mm step size when positioning the axis.
+
+![](Images/PenOnScrew.jpg)
+*pen placed directly over the srew*
+
+Write down the X, Y and Z coordinates. You need them later on when configuring the software.
+## Calibrating the pen rack
+Now we need to figure out the position of the first pen in the rack. 
+To do this **turn ON** your printer and **home all axis**. Put a pen with the printed end cap inside the pen holder. After that use your printers menu to move the pen to the position shown in the image.
+
+![](Images/PenPos-1.jpg)
+*pen placed directly over the srew*
+
+Write down the X and Z coordinates. You need them later on when configuring the software.
+
