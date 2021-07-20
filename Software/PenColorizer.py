@@ -51,6 +51,20 @@ class PenColorizer(Script):
                     "description": "Z position for holding the first pen in the pen rack",
                     "type": "float",
                     "default_value": 238.0
+                },
+                "ExtraRetraction":
+                {
+                    "label": "Retraction durint painting",
+                    "description": "Extra amount of retraction durint painting",
+                    "type": "float",
+                    "default_value": 5.5
+                },
+                "Interlace":
+                {
+                    "label": "Interlace colors",
+                    "description": "Only paint every second layer",
+                    "type": "bool",
+                    "default_value": true
                 }
             }
         }"""
@@ -196,7 +210,8 @@ class PenColorizer(Script):
         lastlayery = 100.0
         lastlayerz = 0.3
         
-        drawrectract = 5.5
+        drawrectract = self.getSettingValueByKey("ExtraRetraction")
+        interlace = self.getSettingValueByKey("Interlace")
         
         isRetractMove = True
     
@@ -257,7 +272,7 @@ class PenColorizer(Script):
                     coord = re.findall(r'[XYZEF].?\d+(?:.\d+)?', line)
                 
                     #should we draw?
-                    draw = curT >= 0 and isSkirt == False and isPrimeTower == False and (layer_number + curT) % 2 == 0
+                    draw = curT >= 0 and isSkirt == False and isPrimeTower == False and ((layer_number + curT) % 2 == 0 or interlace == False)
                 
                     #retract move?
                     E = next((i for i in coord if i.startswith('E')), None)
