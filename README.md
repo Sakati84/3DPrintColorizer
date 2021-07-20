@@ -1,6 +1,8 @@
 
 ![](Media/Logo.jpg)  
+
 **3D Print Colorizer** is a combination of 3D printed parts and a Cura plugin which allows anyone with an Ender 3 like 3D printer to produce multi colored models. Have a look at some results:
+
 ![](Media/Models.jpg)  
 
 ## How it works
@@ -9,6 +11,7 @@
 To coordinate the process a special Cura plugin is used to  add the painting G-Code. After installing it you need to enter some calibration values and afterwards models sliced for an Multi Extrusion printer can be printed on an Ender 3 with full color support.
 
 ![](Media/Animation.gif)  
+*[YouTube link](https://youtu.be/2vPkmsyEDaQ)*
 
 ## Installation
 Detailed installation instruction are given in the [Wiki](https://github.com/Sakati84/3DPrintColorizer/wiki/1-Hardware-Setup). Please follow each step to complete the installation and get ready for mutli color printing.
