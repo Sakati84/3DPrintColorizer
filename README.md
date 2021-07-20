@@ -27,4 +27,6 @@ Detailed installation instruction are given in the [Wiki](https://github.com/Sak
 [5. Printing](https://github.com/Sakati84/3DPrintColorizer/wiki/5-Printing)
 
 ---
-[//]: <> (<a href="https://www.buymeacoffee.com/sakati" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" width="150" height="40" ></a>)
+If you want you can:
+
+<a href="https://www.buymeacoffee.com/sakati" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" width="150" height="40" ></a>
