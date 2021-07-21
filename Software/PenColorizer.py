@@ -45,7 +45,7 @@ class PenColorizer(Script):
                     "type": "float",
                     "default_value": 28.0
                 },
-                "FirstPenYPosition":
+                "FirstPenZPosition":
                 {
                     "label": "First Pen Z Position",
                     "description": "Z position for holding the first pen in the pen rack",
@@ -198,7 +198,7 @@ class PenColorizer(Script):
     def execute(self, data):
     
         self.penstartx = self.getSettingValueByKey("FirstPenXPosition")# 28.0
-        self.penstarty = self.getSettingValueByKey("FirstPenYPosition")#238.0
+        self.penstarty = self.getSettingValueByKey("FirstPenZPosition")#238.0
     
         self.xoffset = self.getSettingValueByKey("PenXOffset")#36.1
         self.yoffset = self.getSettingValueByKey("PenYOffset")#45.3
