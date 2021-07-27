@@ -17,6 +17,14 @@ class PenColorizer(Script):
             "version": 2,
             "settings":
             {
+                "Mode":
+                {
+                    "label": "Mode",
+                    "description": "Use the 3DPrintColorizer for painting or easier support removal?",
+                    "type": "enum",
+                    "options": {"color": "Colorize", "support": "Support Removal"},
+                    "default_value": "color"
+                },
                 "PenXOffset":
                 {
                     "label": "Pen X Offset",
@@ -64,7 +72,8 @@ class PenColorizer(Script):
                     "label": "Interlace colors",
                     "description": "Only paint every second layer",
                     "type": "bool",
-                    "default_value": true
+                    "default_value": true,
+                    "enabled": "Mode == 'color'"
                 }
             }
         }"""
@@ -197,6 +206,8 @@ class PenColorizer(Script):
         
     def execute(self, data):
     
+        mode = self.getSettingValueByKey("Mode")
+    
         self.penstartx = self.getSettingValueByKey("FirstPenXPosition")# 28.0
         self.penstarty = self.getSettingValueByKey("FirstPenZPosition")#238.0
     
@@ -237,7 +248,7 @@ class PenColorizer(Script):
             skirtlines = [";duplicated skirt lines"]
 
             isSkirt = False
-            
+            isSupportInterface = False
             linestoskip = 0
             
             zhopOffset = 3.0
@@ -258,12 +269,20 @@ class PenColorizer(Script):
                     if ";TYPE:PRIME-TOWER" in line:
                         isPrimeTower = True
                         isSkirt = False
-                    elif ";TYPE:SKIRT" in line or ";TYPE:SUPPORT-INTERFACE" in line or ";TYPE:FILL" in line:
+                        isSupportInterface = False
+                    elif ";TYPE:SUPPORT-INTERFACE" in line and mode == 'support':
+                        isSupportInterface = True
+                        isSkirt = False
+                        isPrimeTower = False
+                        curT = 0 
+                    elif ";TYPE:SKIRT" in line or ";TYPE:SUPPORT" in line or ";TYPE:FILL" in line:
                         isSkirt = True
                         isPrimeTower = False
+                        isSupportInterface = False
                     else:
                         isSkirt = False
                         isPrimeTower = False
+                        isSupportInterface = False
                     
                     newlines.append(line)
             
@@ -272,7 +291,10 @@ class PenColorizer(Script):
                     coord = re.findall(r'[XYZEF].?\d+(?:.\d+)?', line)
                 
                     #should we draw?
-                    draw = curT >= 0 and isSkirt == False and isPrimeTower == False and ((layer_number + curT) % 2 == 0 or interlace == False)
+                    if mode == 'color':
+                        draw = curT >= 0 and isSkirt == False and isPrimeTower == False and ((layer_number + curT) % 2 == 0 or interlace == False)
+                    else:
+                        draw = isSupportInterface 
                 
                     #retract move?
                     E = next((i for i in coord if i.startswith('E')), None)
