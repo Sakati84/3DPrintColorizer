@@ -55,7 +55,7 @@ class PenColorizer(Script):
                 "ExtraRetraction":
                 {
                     "label": "Retraction durint painting",
-                    "description": "Extra amount of retraction durint painting",
+                    "description": "Extra amount of retraction during painting",
                     "type": "float",
                     "default_value": 5.5
                 },
