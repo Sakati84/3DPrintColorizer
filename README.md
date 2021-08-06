@@ -1,9 +1,12 @@
 
 ![](Media/Logo.jpg)  
 
-**3D Print Colorizer** is a combination of 3D printed parts and a [Cura](https://ultimaker.com/de/software/ultimaker-cura) plugin which allows anyone with an Ender 3 like 3D printer to produce multi colored models. Have a look at some results:
+**3D Print Colorizer** is a combination of 3D printed parts and a [Cura](https://ultimaker.com/de/software/ultimaker-cura) plugin which allows anyone with an Ender 3 or BLTouch-compatible printer (no CoreXY for now) to produce multi colored models. Have a look at some results:
 
 ![](Media/Models.jpg)  
+
+## Release Notes
+**2021-08-06** Added big compatibility update. Added parts to mount to nearly any BLTouch-compatible Printer (no CoreXY for now).
 
 ## How it works
 3D Print Colorizer uses Sharpie or Sharpie-like permanent markers to directly paint on the layers of a 3D print. After a layer is finished printing normally a pen holder, which is mounted to the print head, is used to fetch pens from a special pen rack mounted to the top part of the printer. Normal printing and painting is used alternately to produce a final colored model.
