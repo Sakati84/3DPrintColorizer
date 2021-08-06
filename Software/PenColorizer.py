@@ -55,7 +55,7 @@ class PenColorizer(Script):
                 "ExtraRetraction":
                 {
                     "label": "Retraction durint painting",
-                    "description": "Extra amount of retraction during painting",
+                    "description": "Extra amount of retraction durint painting",
                     "type": "float",
                     "default_value": 5.5
                 },
@@ -326,6 +326,10 @@ class PenColorizer(Script):
                 #filter out all dual extruder related gcodes but log which extruder should be active right now
                 elif line.startswith("T"):
                     curT = int(line[1:]) - 1
+                    newlines.append(";" + line)
+                
+                #filter out extruder related commands
+                elif "T1" in line or "T2" in line or "T3" in line or "T4" in line or "T5" in line or "T6" in line or "T7" in line or "T8" in line:
                     newlines.append(";" + line)
                 
                 #filter out extruder heating commands
