@@ -18,7 +18,16 @@ To coordinate the process a special [Cura](https://ultimaker.com/de/software/ult
 *[YouTube link](https://youtu.be/2vPkmsyEDaQ)*
 
 ## Installation
+You can watch this video for a quick overview of the setup process:  
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/U__G75EYIEQ/0.jpg)](https://www.youtube.com/watch?v=U__G75EYIEQ)  
+*[YouTube link](https://youtu.be/2vPkmsyEDaQ)*
+
 Detailed installation instruction are given in the [Wiki](https://github.com/Sakati84/3DPrintColorizer/wiki/1-Hardware-Setup). Please follow each step to complete the installation and get ready for mutli color printing.
+
+> **PLEASE don´t forget to:**  
+> + Use **transparent** filament. **No white** filament!
+> + Tune your Z-Axis.
+> + Use the provided Cura profile as a starting point and **don´t** increase the speeds before you know what you are doing. 
 
 [1. Hardware Setup](https://github.com/Sakati84/3DPrintColorizer/wiki/1-Hardware-Setup)
 
