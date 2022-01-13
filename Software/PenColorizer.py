@@ -76,7 +76,7 @@ class PenColorizer(Script):
         if penside == 0:
             getlines = [";Get pen " + str(pen),
                         "G0 F5000 ; set speed fast",
-                        "G0 X" + str(self.penstartx + penoffset) + "Z" + str(self.penstarty - 152.0) + " ;go under pen",
+                        "G0 X" + str(self.penstartx + penoffset) + " Z" + str(self.penstarty - 152.0) + " ;go under pen",
                         "G0 F2000 ; set speed slow",
                         "G0 X" + str(self.penstartx + penoffset) + " Z" + str(self.penstarty) + " ; lift pen",
                         "G0 X" + str(self.penstartx + 20.5 + penoffset) + " Z" + str(self.penstarty) + " ; move pen right",
@@ -85,7 +85,7 @@ class PenColorizer(Script):
         else:
             getlines = [";Get pen " + str(pen),
                         "G0 F5000 ; set speed fast",
-                        "G0 X" + str(self.penstartx + 41.0 + penoffset) + "Z" + str(self.penstarty - 152.0) + " ;go under pen",
+                        "G0 X" + str(self.penstartx + 41.0 + penoffset) + " Z" + str(self.penstarty - 152.0) + " ;go under pen",
                         "G0 F2000 ; set speed slow",
                         "G0 X" + str(self.penstartx + 41.0 + penoffset) + " Z" + str(self.penstarty) + " ; lift pen",
                         "G0 X" + str(self.penstartx + 20.5 + penoffset) + " Z" + str(self.penstarty) + " ; move pen right",
