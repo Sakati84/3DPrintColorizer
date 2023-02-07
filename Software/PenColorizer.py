@@ -258,7 +258,7 @@ class PenColorizer(Script):
                     if ";TYPE:PRIME-TOWER" in line:
                         isPrimeTower = True
                         isSkirt = False
-                    elif ";TYPE:SKIRT" in line or ";TYPE:SUPPORT-INTERFACE" in line or ";TYPE:FILL" in line:
+                    elif ";TYPE:SKIRT" in line or ";TYPE:SUPPORT" in line or ";TYPE:SUPPORT-INTERFACE" in line or ";TYPE:FILL" in line:
                         isSkirt = True
                         isPrimeTower = False
                     else:
